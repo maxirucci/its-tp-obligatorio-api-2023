@@ -1,3 +1,4 @@
+const { matchedData } = require('express-validator')
 const { errorServer } = require('../helpers/error.helper')
 const estudianteModel = require('./../models/estudiantes.models')
 
@@ -20,7 +21,7 @@ const buscar = async (req, res) => {
       data: estudiantes
     })
   } catch (error) {
-    errorServer(error)
+    errorServer(res, error)
   }
 }
 
@@ -35,18 +36,24 @@ const buscar = async (req, res) => {
  */
 const buscarPorId = async (req, res) => {
   try {
-    const { id } = req.params
+    const { id } = matchedData(req)
 
     const estudiante = await estudianteModel.buscarPorId(id)
-    console.log(estudiante)
 
-    res.status(200).json({
+    if (estudiante.length === 0) {
+      return res.status(404).json({
+        ok: false,
+        mensaje: 'No existe un estudiante registrado con el ID solicitado'
+      })
+    }
+
+    return res.status(200).json({
       ok: true,
       mensaje: 'Estudiante solicitado.',
       data: estudiante
     })
   } catch (error) {
-    errorServer(error)
+    errorServer(res, error)
   }
 }
 
@@ -60,7 +67,7 @@ const buscarPorId = async (req, res) => {
  */
 const nuevo = async (req, res) => {
   try {
-    const { nombre, edad, grado } = req.body
+    const { nombre, edad, grado } = matchedData(req)
 
     // Existencia
     const existente = await estudianteModel.buscarExistente({ nombre, edad, grado })
@@ -86,7 +93,7 @@ const nuevo = async (req, res) => {
       mensaje: 'El estudiante se registró correctamente.'
     })
   } catch (error) {
-    errorServer(error)
+    errorServer(res, error)
   }
 }
 
@@ -100,8 +107,7 @@ const nuevo = async (req, res) => {
  */
 const actualizar = async (req, res) => {
   try {
-    const { id } = req.params
-    const { nombre, edad, grado } = req.body
+    const { id, nombre, edad, grado } = matchedData(req)
 
     // Existencia
     const estudiante = await estudianteModel.buscarPorId(id)
@@ -127,7 +133,7 @@ const actualizar = async (req, res) => {
       mensaje: 'El estudiante se actualizó correctamente.'
     })
   } catch (error) {
-    errorServer(error)
+    errorServer(res, error)
   }
 }
 
@@ -141,7 +147,7 @@ const actualizar = async (req, res) => {
  */
 const eliminar = async (req, res) => {
   try {
-    const { id } = req.params
+    const { id } = matchedData(req)
 
     // Existencia
     const estudiante = await estudianteModel.buscarPorId(id)
@@ -167,7 +173,7 @@ const eliminar = async (req, res) => {
       mensaje: 'El estudiante se eliminó correctamente.'
     })
   } catch (error) {
-    errorServer(error)
+    errorServer(res, error)
   }
 }
 

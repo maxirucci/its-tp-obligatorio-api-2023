@@ -1,13 +1,13 @@
 const db = require('./../config/db')
 
 const buscar = async () => {
-  const [filas] = await db.execute('SELECT * FROM estudiantes WHERE deleted=0')
+  const [filas] = await db.execute('SELECT * FROM estudiantes')
 
   return filas
 }
 
 const buscarPorId = async (id) => {
-  const [filas] = await db.execute('SELECT * FROM estudiantes WHERE id=? AND deleted=0', [id])
+  const [filas] = await db.execute('SELECT * FROM estudiantes WHERE id=?', [id])
 
   return filas
 }
@@ -15,7 +15,7 @@ const buscarPorId = async (id) => {
 const buscarExistente = async (datosEstudiante) => {
   const { nombre, edad, grado } = datosEstudiante
 
-  const [filas] = await db.execute('SELECT * FROM estudiantes WHERE nombre=? AND edad=? AND grado=? AND deleted=0', [nombre, edad, grado])
+  const [filas] = await db.execute('SELECT * FROM estudiantes WHERE nombre=? AND edad=? AND grado=?', [nombre, edad, grado])
 
   return filas
 }
@@ -23,7 +23,7 @@ const buscarExistente = async (datosEstudiante) => {
 const nuevo = async (datosEstudiante) => {
   const { nombre, edad, grado } = datosEstudiante
 
-  const [resultado] = await db.execute('INSERT INTO estudiantes (nombre, edad, grado, deleted) VALUES (?, ?, ?, 0)', [nombre, edad, grado])
+  const [resultado] = await db.execute('INSERT INTO estudiantes (nombre, edad, grado) VALUES (?, ?, ?)', [nombre, edad, grado])
 
   return resultado
 }
@@ -31,14 +31,14 @@ const nuevo = async (datosEstudiante) => {
 const actualizar = async (id, datosEstudiante) => {
   const { nombre, edad, grado } = datosEstudiante
 
-  const [resultado] = await db.execute('UPDATE estudiantes SET nombre=?, edad=?, grado=?, deleted=0 WHERE id=?', [nombre, edad, grado, id])
+  const [resultado] = await db.execute('UPDATE estudiantes SET nombre=?, edad=?, grado=? WHERE id=?', [nombre, edad, grado, id])
 
   return resultado
 }
 
 const eliminar = async (id) => {
   console.log('id', id)
-  const [resultado] = await db.execute('UPDATE estudiantes SET deleted=1 WHERE id=?', [id])
+  const [resultado] = await db.execute('DELETE FROM estudiantes WHERE id=?', [id])
 
   return resultado
 }

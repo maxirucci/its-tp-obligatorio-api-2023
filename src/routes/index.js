@@ -16,7 +16,7 @@ archivosEnDirectorio.forEach((archivo) => {
   }
 })
 
-function RemoverExtension(archivo) {
+function RemoverExtension (archivo) {
   return archivo.split('.').shift()
 }
 

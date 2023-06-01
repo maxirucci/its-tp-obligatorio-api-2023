@@ -26,7 +26,7 @@ app.use(BASE_URL_API, require('./routes'))
 
 // _INICIAR SERVER
 app.listen(PORT, () => {
-  console.log(`--> Bridge API || v${VERSION} || Puerto: ${PORT}`)
+  console.log(`--> Sistema de gestión escolar API || v${VERSION} || Puerto: ${PORT}`)
 })
 
 module.exports = app

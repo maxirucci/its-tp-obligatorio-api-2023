@@ -1,11 +1,27 @@
 const express = require('express')
 const router = express.Router()
-const estudiantesController = require('./../controllers/estudiantes.controller')
+const estudiantes = require('./../controllers/estudiantes.controller')
+const idValidator = require('./../middlewares/validators/id.validator')
+const estudiantesValidator = require('./../middlewares/validators/estudiantes.validator')
 
-router.get('/', estudiantesController.buscar)
-router.get('/:id', estudiantesController.buscarPorId)
-router.post('/', estudiantesController.nuevo)
-router.put('/:id', estudiantesController.actualizar)
-router.delete('/:id', estudiantesController.eliminar)
+router.get('/',
+  estudiantes.buscar)
+
+router.get('/:id',
+  idValidator.id,
+  estudiantes.buscarPorId)
+
+router.post('/',
+  estudiantesValidator.model,
+  estudiantes.nuevo)
+
+router.put('/:id',
+  idValidator.id,
+  estudiantesValidator.model,
+  estudiantes.actualizar)
+
+router.delete('/:id',
+  idValidator.id,
+  estudiantes.eliminar)
 
 module.exports = router

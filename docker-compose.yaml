@@ -1,0 +1,12 @@
+version: "3.1"
+services:
+  mysql:
+    container_name: tp-obligatorio-api
+    image: mysql:8.0.29
+    volumes:
+      - ./data/sql-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: 'tp-obligatorio'
+      MYSQL_ROOT_PASSWORD: '123456'

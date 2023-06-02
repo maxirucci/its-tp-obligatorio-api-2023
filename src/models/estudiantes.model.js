@@ -1,4 +1,4 @@
-const db = require('./../config/db')
+const db = require('../config/db')
 
 const buscar = async () => {
   const [filas] = await db.execute('SELECT * FROM estudiantes')
@@ -12,24 +12,24 @@ const buscarPorId = async (id) => {
   return filas
 }
 
-const buscarExistente = async (datosEstudiante) => {
-  const { nombre, edad, grado } = datosEstudiante
+const buscarExistente = async (datos) => {
+  const { nombre, edad, grado } = datos
 
   const [filas] = await db.execute('SELECT * FROM estudiantes WHERE nombre=? AND edad=? AND grado=?', [nombre, edad, grado])
 
   return filas
 }
 
-const nuevo = async (datosEstudiante) => {
-  const { nombre, edad, grado } = datosEstudiante
+const nuevo = async (datos) => {
+  const { nombre, edad, grado } = datos
 
   const [resultado] = await db.execute('INSERT INTO estudiantes (nombre, edad, grado) VALUES (?, ?, ?)', [nombre, edad, grado])
 
   return resultado
 }
 
-const actualizar = async (id, datosEstudiante) => {
-  const { nombre, edad, grado } = datosEstudiante
+const actualizar = async (id, datos) => {
+  const { nombre, edad, grado } = datos
 
   const [resultado] = await db.execute('UPDATE estudiantes SET nombre=?, edad=?, grado=? WHERE id=?', [nombre, edad, grado, id])
 

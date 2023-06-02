@@ -1,5 +1,5 @@
 const { body } = require('express-validator')
-const resultadoValidaciones = require('./../../helpers/validaciones.helpers')
+const resultadoValidaciones = require('../../helpers/validaciones.helpers')
 
 const model = [
   body('nombre').notEmpty().isString().isLength({ max: 100 }),

@@ -17,7 +17,7 @@ const buscar = async (req, res) => {
 
     return res.status(200).json({
       ok: true,
-      mensaje: 'Lista de profesores.',
+      mensaje: profesores.length !== 0 ? 'Lista de profesores.' : 'El sistema no tiene profesores registrados.',
       data: profesores
     })
   } catch (error) {

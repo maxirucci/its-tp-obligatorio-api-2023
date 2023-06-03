@@ -11,6 +11,10 @@ router.get('/:id',
   idValidator.id,
   estudiantes.buscarPorId)
 
+router.get('/:id/cursos',
+  idValidator.id,
+  estudiantes.cursosDelEstudiante)
+
 router.post('/',
   estudiantesValidator.model,
   estudiantes.nuevo)

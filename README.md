@@ -37,6 +37,10 @@ En el repositorio se encuentra el archivo para semilla para crear la base de dat
    ```bash
    npm run dev
    ```
+<br>
+
+## Ruta de pruebas
+La API cuenta con una ruta de prueba `{{url}}/api/1.0/ping` para verificar el correcto funcionamiento del servidor.
 
 <br>
 

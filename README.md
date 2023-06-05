@@ -1,12 +1,16 @@
-# TRABAJO PRÁCTICO
+# SISTEMA DE GESTIÓN ESCOLAR
+API que permite interactuar con estudiantes, profesores y curso.
 
-## SISTEMA DE GESTIÓN ESCOLAR
-Se trata de un API que permite interactuar con estudiantes, profesores y curso.
+<br>
+
+## Requerimientos
+Son requeridas las siguientes instalaciones:
+- Docker
+- Node JS
 
 <br>
 
 ## Ejecución en un entorno de desarrollo
-En el repositorio se encuentra el archivo para semilla para crear la base de datos
 
 - Instalación de dependencias:
   ```bash

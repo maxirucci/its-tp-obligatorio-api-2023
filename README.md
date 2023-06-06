@@ -22,7 +22,7 @@ Son requeridas las siguientes instalaciones:
   docker-compose up -d
   ```
 
-- Correr el archivo semilla `seed.sql` ubicado en /src para crear el baseline de la base de datos.
+- Para crear el baseline de la base de datos, correr el archivo semilla `seed.sql` ubicado en la carpeta raíz.
 
 - Crear y configurar el archivo `.env`
   ```bash
